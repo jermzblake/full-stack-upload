@@ -22,9 +22,9 @@ function App() {
 
   const submit = async (event) => {
     event.preventDefault();
-    console.log(description);
     const result = await postImage({ image: file, description });
     setImages([result.image, ...images]);
+    setPreviewImage("");
   };
 
   const fileSelected = (event) => {
@@ -44,14 +44,13 @@ function App() {
         ></input>
         <button type="submit">Submit</button>
       </form>
-
+      {previewImage && <img src={previewImage} alt="preview" />}
+      <br />
       {images.map((image) => (
         <div key={image}>
           <img src={image} alt="upload file"></img>
         </div>
       ))}
-
-      <img src={previewImage} alt="preview" />
     </div>
   );
 }
